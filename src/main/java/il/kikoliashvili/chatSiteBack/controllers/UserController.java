@@ -2,6 +2,7 @@ package il.kikoliashvili.chatSiteBack.controllers;
 
 import il.kikoliashvili.chatSiteBack.entities.SiteUser;
 import il.kikoliashvili.chatSiteBack.services.UserService;
+import il.kikoliashvili.chatSiteBack.utils.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,8 @@ public class UserController {
 
     /** userService bean */
     private final UserService userService;
+
+    private final JwtUtil jwtUtil;
 
     /**
      * REST point for register users
@@ -59,6 +62,11 @@ public class UserController {
         } catch (Exception e) {
             return e.getMessage();
         }
+    }
+
+    @PostMapping("/getToken")
+    public String getToken() {
+        return jwtUtil.generateToken(new SiteUser());
     }
 
 }

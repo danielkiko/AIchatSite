@@ -65,7 +65,7 @@ public class UserService {
      * @param username username
      * @return user
      */
-    private SiteUser getUserByUsername(String username) {
+    public SiteUser getUserByUsername(String username) {
         return userRepo.findByUsername(username);
     }
     /**
